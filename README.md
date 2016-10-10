@@ -36,3 +36,65 @@ Graphical Users Interface
             add(item1);//eisagei to item
         }
     }
+#Event Handler Program
+
+    import javax.swing.JFrame;
+    public class apples {
+        public static void main(String args[]){		
+            tuna stef = new tuna();//object tuna
+            stef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//kleinei to parathhro
+            stef.setSize(350, 100);//ftiaxnw to size
+            stef.setVisible(true);//to kanw emfanes
+        } 
+    }
+    
+    import java.awt.FlowLayout;
+    import java.awt.event.ActionListener;//perimenei an kanei kati o xrhsths
+    import java.awt.event.ActionEvent;
+    import javax.swing.JFrame;
+    import javax.swing.JTextField;//dinei ta textfields
+    import javax.swing.JPasswordField;//dinei ta JpasswordFields
+    import javax.swing.JOptionPane;
+    
+    public class  tuna extends JFrame{//ftiaxnoume parathhro
+        private JTextField item1;//Dhmiourgw 3 metablhtes JTextField
+        private JTextField item2;
+        private JTextField item3;
+        private JPasswordField pass;//typou JPasswordField	
+
+        public tuna(){//Dhmiourgeia constructor kai aparthhrou
+            super ( "Τιτλος Παραθύρου");
+            setLayout(new FlowLayout());
+            item1 =new JTextField(10);//dhmiourgei JTextField object me parametrous
+            add(item1);//eisagwgh item1 field
+            item2 =new JTextField("Enter text Here:");//dhmiourgei JTextField object me parametrous
+            add(item2);// eisagwgh item2 field
+            item3 = new JTextField("oti thelw", 20);//dhmiourgei JTextField object me parametrous
+            item3.setEditable(false);//gia na mhn m porei na kanei edit
+            add(item3);// eisagwgh item3 field
+            pass = new JPasswordField("My pass");//dhmiourgei JPassword object
+            add(pass);// eisagwgh pass	
+
+            thehandler handler = new thehandler();//dhmiourgeia object
+            item1.addActionListener(handler);//topothetoume sthn item1 ton actionListener
+            item2.addActionListener(handler);
+            item3.addActionListener(handler);
+            pass.addActionListener(handler);
+        }	
+
+        private class thehandler implements ActionListener{//dhmiourgeia klashw gia action Listener
+            public void actionPerformed(ActionEvent event){//dhmiourgeia methodou
+                String string = "" ;
+                if (event.getSource() == item1 ){//h phgh h opoia pairnei to event pou einai to action 1 				
+                    string=String.format("Field1: %s", event.getActionCommand());//
+                }else if(event.getSource() == item2){
+                    string=String.format("Field2: %s", event.getActionCommand());
+                }else if(event.getSource() == item3){
+                    string=String.format("Field3: %s", event.getActionCommand());
+                }else if(event.getSource() == pass){
+                    string=String.format("The password field is:  %s", event.getActionCommand());
+                }
+                JOptionPane.showConfirmDialog(null, string);//null gia th thesh kai string ti tha bgalei
+            }
+        }
+    }
