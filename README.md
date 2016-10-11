@@ -98,3 +98,34 @@ Graphical Users Interface
             }
         }
     }
+#Polymorphism and Polimorphic Arguments
+
+    public class apples {
+        public static void main(String args[]){		
+
+            fatty stef = new fatty();
+            food fo = new food();
+            food po = new potpie();
+             stef.digest(fo);
+             stef.digest(po);
+        } 
+    }
+    public class tuna  extends food {	
+        void eat(){
+            System.out.println("This tuna is great!!");
+        }
+    }
+     public class potpie extends food {
+        void eat(){
+            System.out.println("This potpie is great!!");
+    }
+    public class food {
+        void eat(){
+            System.out.println("This food is great!!");
+        }
+    }
+    public class fatty {	
+        public void digest(food x){
+            x.eat();
+        }
+    }
