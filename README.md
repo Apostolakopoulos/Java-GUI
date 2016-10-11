@@ -118,12 +118,12 @@ Graphical Users Interface
      public class potpie extends food {
         void eat(){
             System.out.println("This potpie is great!!");
-    }
-    public class food {
-        void eat(){
-            System.out.println("This food is great!!");
+    }}
+    
+    abstract public class food {	
+	abstract void eat();	
         }
-    }
+        
     public class fatty {	
         public void digest(food x){
             x.eat();
