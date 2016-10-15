@@ -1,0 +1,50 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //gia na kleinei to programma aparaithto
+		go.setSize(300,200);//megethos
+		go.setVisible(true);//einai emfanes		
+		
+	}
+}
+import java.awt.*; //eisagw ta panta gia na ftiksw
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;//parathurikh efarmogh
+
+
+public class Gui extends JFrame {//klhronomei apo thn JFrame
+	
+	private JButton reg; //dhmiourgeia koumpion
+	private JButton custom;
+	
+	public Gui (){ //constructor
+		super ("The Title"); //jframe constractor bazw title sto window
+		setLayout(new FlowLayout());//pou tha emfanizei to parthuro
+		
+		reg = new JButton("reg Button");//dhmiourgeia tou Button entos tou parathurou me onoma reg Button
+		add(reg);//to eisagw sto parthhro
+		
+		Icon b = new ImageIcon(getClass().getResource("Other-Power-Shut-Down-Metro-icon.png"))				;
+		//dhlwnw thn b san icon kai eisagw se authn to icon pou tha xrshshmopoihsw		
+		Icon x = new ImageIcon(getClass().getResource("download-3-icon.png"));
+		
+		custom = new JButton("Custom",b);//ftiaxnw to button me to b icon
+		custom.setRolloverIcon(x);
+		add(custom);
+		
+		HandlerClass handler = new HandlerClass();//dhmiourgeia object
+		reg.addActionListener(handler);//molis paththei ektelei thn handler
+		custom.addActionListener(handler);//molis paththei ektelei thn handler
+	}
+	
+	private class HandlerClass implements ActionListener{//dhmiourgeia klashs pou leitourgei ws action listener 
+		public void actionPerformed(ActionEvent event){//tha sumbei ama klikaristei ena pao ta duo koumbia
+			JOptionPane.showMessageDialog(null,String.format("%s", event.getActionCommand()));//emfanizei to parthhro dialogou
+		}
+	}
+	
+}
