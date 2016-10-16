@@ -1,0 +1,73 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(300,200);
+		go.setVisible(true);
+		
+	}
+}
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Gui extends JFrame {
+	
+	private JTextField tf; //dhlwsh textfield metablhths
+	private Font pf;       //Font metablhth
+	private Font bf;
+	private Font itf;
+	private Font bif;
+	private JRadioButton pb;//Radio Button metablhth
+	private JRadioButton bb;
+	private JRadioButton itb;
+	private JRadioButton bib;
+	private ButtonGroup group;//Button Group metablhth
+	
+	public Gui (){//Constractor
+		
+		super("The Title...");
+		setLayout(new FlowLayout());
+		tf = new JTextField("Stefanara gamas...",25);//Dhmiourgeia textfield
+		add(tf);
+		
+		pb = new JRadioButton( "pain" , true); //dhmiourgeia Radio Button me true dld tickarismeno
+		bb = new JRadioButton( "bold" , false);
+		itb = new JRadioButton( "italic" , false);
+		bib = new JRadioButton( "bold-italic" , false);
+		add(pb); add(bb); add(itb); add(bib);
+		
+		group = new ButtonGroup(); //dhmiourgeia Button Group
+		group.add(pb); group.add(bb); group.add(itb); group.add(bib);//eisagw ta buttons se group
+		//Ta bazw se group gia na kseroun pote to ena einai tickarismeno wste na mhn einai ta alla
+		
+		pf = new Font("Serif",Font.PLAIN,14);
+		bf = new Font("Serif",Font.BOLD,14);
+		itf = new Font("Serif",Font.ITALIC,14);
+		bif = new Font("Serif",Font.BOLD + Font.ITALIC,14);
+		
+		tf.setFont(pf);//thetei thn grammatoseira kai bazei thn pf gia default
+		
+		pb.addItemListener(new HandlerClass(pf));
+		//perimenei na sumbei kati sto pb button kai pernaei to fond object ston constructor
+		bb.addItemListener(new HandlerClass(bf));
+		itb.addItemListener(new HandlerClass(itf));
+		bib.addItemListener(new HandlerClass(bif));
+	}
+	
+	private class HandlerClass implements ItemListener{
+		
+		private Font font;//dhmiourgeia metablhths font
+		
+		public HandlerClass(Font f){//Constructor
+			font = f ; //the font object gets variable font			
+		}
+		
+		public void itemStateChanged(ItemEvent event){
+			tf.setFont(font);//sets the fond to the font object that was passed in
+		}
+		
+	}
