@@ -1,1 +1,47 @@
+import javax.swing.JFrame;
 
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(300,200);
+		go.setVisible(true);
+		
+	}
+}
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class Gui extends JFrame {
+	
+	private JList list;
+	private static String[] colornames = {"black","blue","red","white"};//Colors the way we understand them
+	private static Color[] colors = {Color.BLACK,Color.BLUE,Color.RED,Color.WHITE};//the way Java understands them
+	
+	public Gui(){ //Constructor
+		super("The Title");
+		setLayout(new FlowLayout());
+		
+		list = new JList(colornames);//takes the values from colornames array
+		list.setVisibleRowCount(4);//have 4 Rows like the colors
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);//allows to select multiple items or 1
+		add(new JScrollPane(list));//puts it on window
+		
+		list.addListSelectionListener(
+				new ListSelectionListener(){//mandatory in Java
+					public void valueChanged(ListSelectionEvent event){//mandatory in Java
+						getContentPane().setBackground(colors[list.getSelectedIndex()]);
+						/*automatically is going to know the color. The selected item for example may be 3 
+						 * index the list with the colornames that means red in the colors array*/
+					}
+				}
+				
+			);	 
+		
+	}
+	
+	
+}
