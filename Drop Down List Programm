@@ -1,0 +1,46 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(300,200);
+		go.setVisible(true);
+		
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Gui extends JFrame {
+	
+	private JComboBox box;
+	private JLabel picture;
+	
+	private static String[] filename = {"download-3-icon.png","Other-Power-Shut-Down-Metro-icon.png"};
+	//array that stores the images (actually the names(paths) thats why is String) 
+	private Icon[] pics = {new ImageIcon(getClass().getResource(filename[0])),new ImageIcon(getClass().getResource(filename[1]))};
+	/*takes the elements from filename and stores them to pics array like actual images, new ImageIcon(getClass().getResource(filename[0])) 
+	 : this is the actual image thats why the pics is Declared as Icon[]*/
+	
+	public Gui(){//Contractor
+		super("the title");
+		setLayout(new FlowLayout());
+		
+		box = new JComboBox(filename);
+		
+		box.addItemListener(//we can create an itemListener without creating a new class (anonymous inner class)
+				new ItemListener(){//by typing inside the addItemListener() : new ItemListener
+					public void itemStateChanged(ItemEvent event){//the new class itemStateChanged(ItemEvent event)
+						if(event.getStateChange()==ItemEvent.SELECTED){//if item is selected
+							picture.setIcon(pics[box.getSelectedIndex()]);//
+						}
+					}
+				} );//closes parenthesis
+		add(box);
+		picture = new JLabel(pics[0]);
+		add(picture);
+	}
