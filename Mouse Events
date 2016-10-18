@@ -1,0 +1,73 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(400,200);
+		go.setVisible(true);
+		
+	}
+}
+import java.awt.*;
+import java.awt.event.*;//mouse events
+import javax.swing.*;
+
+public class Gui extends JFrame {
+	
+	private JPanel mousepanel;//the area where i move my mouse around (big empty space)
+	private JLabel statusbar;//label
+	
+	public Gui(){
+		super("Title");
+		mousepanel = new JPanel();//creating panel
+		mousepanel.setBackground(Color.WHITE);//default color White
+		add(mousepanel,BorderLayout.CENTER);//It will appears at the center of the screen
+		
+		statusbar = new JLabel("default");//creating the label with default in it
+		add(statusbar,BorderLayout.SOUTH);//it will appears at the bottom of the screen
+		
+		Handlerclass handler = new Handlerclass();//we need a class to use the mouse events
+		
+		mousepanel.addMouseListener(handler);
+		mousepanel.addMouseMotionListener(handler);
+		
+	}
+	
+	private class Handlerclass implements MouseListener,MouseMotionListener{//Handlerclass class
+		
+		public void mouseClicked(MouseEvent event){//what will happen when the mouse is clicked
+			statusbar.setText(String.format("Clicked at %d , %d", event.getX(),event.getY()));			
+		}
+		
+		public void mousePressed(MouseEvent event){//what will happen if you pressed the mouse
+			statusbar.setText("You pressed the mouse");			
+		}
+		
+		public void mouseReleased(MouseEvent event){//what will happen if you release the mouse
+			statusbar.setText("You released the mouse");			
+		}
+		
+		public void mouseEntered(MouseEvent event){//what will happen when you enter the panel
+		 	statusbar.setText("You entered the area");
+			mousepanel.setBackground(Color.RED);
+		}
+		
+		public void mouseExited(MouseEvent event){//what happens when the mouse is out of the panel
+			statusbar.setText("The mouse left the area");
+			mousepanel.setBackground(Color.WHITE);
+		}
+		
+		public void mouseDragged(MouseEvent event){//what happens when the mouse is dragged
+			statusbar.setText("You are dragging the mouse...");
+		}
+		
+		public void mouseMoved(MouseEvent event){//what happens when the mouse is moving
+			statusbar.setText("You move the mouse!!!");
+		}
+		
+	}
+
+	
+}
