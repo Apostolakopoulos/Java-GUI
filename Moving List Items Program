@@ -1,0 +1,54 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(400,200);
+		go.setVisible(true);
+		
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class Gui extends JFrame {
+	
+	private JList leftlist;
+	private JList rightlist;
+	private JButton movebutton;
+	private static String[] foods = {"bacon","chcken wings","beef","ham","more bacon"};
+	
+	public Gui (){
+		super("title");
+		setLayout(new FlowLayout());
+		
+		leftlist = new JList(foods);
+		leftlist.setVisibleRowCount(3);
+		leftlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		add(new JScrollPane(leftlist));
+		
+		movebutton = new JButton("Move-->");
+		movebutton.addActionListener( //default
+				new ActionListener(){//default
+					public void actionPerformed(ActionEvent event){//default
+						rightlist.setListData(leftlist.getSelectedValues());
+					}
+				}
+				);
+		add(movebutton);
+		
+		rightlist = new JList();
+		rightlist.setVisibleRowCount(3);
+		rightlist.setFixedCellWidth(100);
+		rightlist.setFixedCellHeight(15);
+		rightlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		add(new JScrollPane(rightlist));
+		
+	}
+	
+}
