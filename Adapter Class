@@ -1,0 +1,49 @@
+import javax.swing.JFrame;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui go = new Gui();
+		go.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		go.setSize(400,200);
+		go.setVisible(true);
+		
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;//mouse events
+import javax.swing.*;
+
+public class Gui extends JFrame {
+	 
+	private String details;
+	private JLabel statusbar;
+	
+	public Gui(){
+		
+		super("Title");
+		
+		statusbar = new JLabel("This is Default...");
+		add(statusbar,BorderLayout.SOUTH);
+		addMouseListener(new MouseClass());
+	}
+	
+	private class MouseClass extends MouseAdapter{ //MouseAdapter is already built in Java allows to overwrite only the methods that i need
+		
+		public void mouseClicked(MouseEvent event){
+			details = String.format("You clicked %d...", event.getClickCount());
+			if (event.isMetaDown()) 		//event.isMetaDown(): for 3 button mouses right, left click and roll click
+				details += " With rigth mouse button...";
+			else if (event.isAltDown())		//roll click
+				details += "Whith center mouse button...";
+			else							 //left click
+				details += "With lest mouse button";
+				
+			statusbar.setText(details);
+				
+		}
+		
+	}
+	
+}
