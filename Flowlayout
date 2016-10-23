@@ -1,0 +1,72 @@
+import javax.swing.*;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Gui lol = new Gui();
+		lol.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lol.setSize(300, 100);
+		lol.setVisible(true);
+	
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Gui extends JFrame{
+	
+	private JButton lb;//buttons
+	private JButton cb;
+	private JButton rb;
+	private FlowLayout layout; //layout
+	private Container container;
+	
+	public Gui(){
+		//Creating a window
+		super("Title");
+		layout = new FlowLayout();
+		
+		container = getContentPane();//it knows where to put the staff
+		setLayout(layout); //layout = new setLayout(Flowlayout); what it means
+		
+		// left stuff in here
+		lb = new JButton("left");//i have a button on the screen it says left in it
+		add(lb);//adding it on window
+		lb.addActionListener(//adding action listener with the method inside it
+				new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						layout.setAlignment(FlowLayout.LEFT);
+						layout.layoutContainer(container);
+					}
+				}
+			);
+		
+		// center stuff in here
+		cb = new JButton("center");//i have a button on the screen it says left in it
+		add(cb);//adding it on window
+		cb.addActionListener(//adding action listener with the method inside it
+				new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						layout.setAlignment(FlowLayout.CENTER);
+						layout.layoutContainer(container);
+					}
+				}
+			);
+		
+		// right stuff in here
+		rb = new JButton("right");//i have a button on the screen it says left in it
+		add(rb);//adding it on window
+		rb.addActionListener(//adding action listener with the method inside it
+				new ActionListener(){
+					public void actionPerformed(ActionEvent event){
+						layout.setAlignment(FlowLayout.RIGHT);
+						layout.layoutContainer(container);
+					}
+				}
+			);
+		
+	}
+	
+}
