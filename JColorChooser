@@ -1,0 +1,46 @@
+import javax.swing.*;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		Peach p = new Peach();
+		p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Peach extends JFrame {
+		
+		private JButton b;//JButton variable
+		private Color c = (Color.WHITE); //color variable set to white as default
+		private JPanel panel; //JPanel Variable
+		 
+		public Peach (){ //Constructor
+			super("The Title");//creating window with title
+			panel = new JPanel(); //creating JPanel in window
+			panel.setBackground(c);//set panels color as c
+			
+			b = new JButton("Choose color!");//creates new button
+			b.addActionListener(//adds action listener
+					new ActionListener(){
+						 public void actionPerformed(ActionEvent e){ //with this mandatory build in method
+							c = JColorChooser.showDialog(null,"Pick your Color" , c); 
+		//First parameter position of the dialoge.Second parameter is the title of the dialog.Third is the color
+							 if(c==null){//if the user chooses no color then is the panel is white
+								 c=(Color.WHITE);}
+							 panel.setBackground(c);
+						 }
+					}
+				);
+			add(panel,BorderLayout.CENTER);
+			add(b,BorderLayout.SOUTH);
+			setSize(425,150);
+			setVisible(true);
+		}
+		
+	
+}
