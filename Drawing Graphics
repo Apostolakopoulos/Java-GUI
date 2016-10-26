@@ -1,0 +1,38 @@
+import javax.swing.*;
+
+public class apples {
+	public static void main(String args[]){	
+		
+		JFrame f =new JFrame("Title");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Peach p = new Peach();
+		f.add(p);
+		f.setSize(400, 250);
+		f.setVisible(true);
+	
+	}
+}
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Peach extends JPanel {
+	
+	public void paintComponent(Graphics g){//build in method thats inherited
+		
+		super.paintComponent(g);         //calls the super classes because we need them
+		this.setBackground(Color.WHITE);//this:object With white background
+		
+		g.setColor(Color.BLUE);       //the graphics object is BLUE
+		g.fillRect(25, 25, 100, 30); //Draws rectangle at 25, 25 with 100 width and 30 height
+		
+		g.setColor(new Color(190,81,250));//creating my own color (red , green , blue). how much red,green,blue i want.
+		g.fillRect(25, 65, 100, 30); //Drowns rectangle at 25, 65 with 100 width and 30 height
+		
+		g.setColor(Color.RED);
+		g.drawString("this is some Text...", 25 , 120);//Draws String
+		
+		
+	}
+	
